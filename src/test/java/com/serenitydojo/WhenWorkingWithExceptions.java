@@ -33,13 +33,13 @@ public class WhenWorkingWithExceptions {
      * does not contain the excepted text, or if the file does not exist.
      */
     @Test
-    public void catchingExceptions() {
+    public void catchingExceptions() throws IOException {
         FileLoader fileLoader = new FileLoader();
         assertThat(fileLoader.fileContainsText("hello.txt","Hello World")).isTrue();
     }
 
     @Test
-    public void catchingExceptionsWhenTheFileDoesNotExist() {
+    public void catchingExceptionsWhenTheFileDoesNotExist() throws IOException {
         FileLoader fileLoader = new FileLoader();
         assertThat(fileLoader.fileContainsText("does-not-exist.txt","Hello World")).isFalse();
     }
@@ -50,7 +50,7 @@ public class WhenWorkingWithExceptions {
      * and update the fileHasText() method to throw this exception if no matching file is found.
      */
     @Test(expected = MissingWelcomeFileException.class)
-    public void catchingCustomExceptionsWhenTheFileDoesNotExist() {
+    public void catchingCustomExceptionsWhenTheFileDoesNotExist() throws IOException {
         FileLoader fileLoader = new FileLoader();
         assertThat(fileLoader.fileHasText("does-not-exist.txt","Hello World")).isFalse();
     }
